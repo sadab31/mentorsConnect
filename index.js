@@ -2,10 +2,12 @@ const express = require("express");
 const app = express();
 const PORT = 3002;
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
 const faqRouter = require("./routes/faq.route");
 const mentorsRouter = require("./routes/mentors.route");
 
+app.use(bodyParser.json());
 app.use(faqRouter);
 app.use(mentorsRouter);
 
