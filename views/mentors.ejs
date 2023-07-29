@@ -195,8 +195,15 @@
             .then((response) => {
               console.log(data);
               console.log("Data sent successfully");
+              return response.text();
               // Optionally, you can perform navigation to the chosenmentor route here
             })
+
+            .then((htmlContent) => {
+              // Replace the current page content with the rendered HTML content
+              document.documentElement.innerHTML = htmlContent;
+            })
+
             .catch((error) => {
               console.error("Error sending data:", error);
             });

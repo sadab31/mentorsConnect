@@ -9,4 +9,11 @@ exports.mentorSelected = (req, res) => {
   const { name, email } = req.body;
 
   console.log("Received mentor data:", { name, email });
+
+  res.render("mentorSelected", { mentorsData });
+};
+
+exports.bookSession = (req, res) => {
+  console.log("Entered booked session");
+  res.send("SESSION BOOKED");
 };
