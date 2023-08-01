@@ -1,14 +1,13 @@
-<% console.log("Rendering mentorSelected.ejs"); %>
+<!-- booking_form.ejs -->
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Mentor Information</title>
+    <title>Book Mentor -</title>
     <!-- Add Bootstrap CSS CDN link here -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-
     <style>
       /* Your custom styles here */
       body {
@@ -23,7 +22,9 @@
       .card {
         background-color: #16213e !important; /* Dark navy blue background color for cards */
         border-color: #1a1a2e !important; /* Dark blue border color for cards */
+        color: #dad7d7; /* White text color for card content */
       }
+
       .btn-primary {
         background-color: #1a1a2e !important; /* Dark blue background color for hire mentor buttons */
         border-color: #1a1a2e !important; /* Dark blue border color for hire mentor buttons */
@@ -33,25 +34,25 @@
         background-color: #212144 !important; /* Slightly lighter background color on hover */
         border-color: #212144 !important; /* Slightly lighter border color on hover */
       }
-      .card-title,
-      .card-text {
-        color: #dad7d7 !important; /* White text color for card titles and text */
+
+      .form-group label {
+        color: #dad7d7 !important; /* White text color for labels */
+        font-weight: bold; /* Bold font for labels */
       }
 
-      /* Square images CSS */
-      .square-img {
-        width: 100%;
-        padding-top: 100%; /* 1:1 Aspect Ratio (square) */
-        position: relative;
-        overflow: hidden;
+      .form-control {
+        background-color: #161636; /* Dark blue background for form controls */
+        color: #dad7d7; /* White text color for form controls */
+        border-color: #1a1a2e; /* Dark blue border for form controls */
       }
 
-      .square-img img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: auto;
+      .form-control::placeholder {
+        color: #b6b6b6; /* Light gray placeholder text color */
+      }
+
+      .form-control:focus {
+        background-color: #212144; /* Slightly lighter background on focus */
+        border-color: #212144; /* Slightly lighter border on focus */
       }
     </style>
   </head>
@@ -107,49 +108,66 @@
         </form>
       </div>
     </nav>
+    <br />
+    <br />
 
-    <div class="container mt-5">
-      <h1 class="text-center mb-4">Mentor Information</h1>
-      <div class="card mb-4">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <div class="square-img">
-              <!-- Replace 'mentor.picture' with the mentor's picture URL -->
-              <img
-                src="https://images.pexels.com/photos/1933873/pexels-photo-1933873.jpeg?auto=compress&cs=tinysrgb&w=600"
-                alt="Mentor Image"
+    <div class="container">
+      <h1>Book Mentor - <%= mentorName %></h1>
+      <br />
+      <div class="card">
+        <div class="card-body">
+          <form method="POST" action="/bookSuccess">
+            <div class="form-group">
+              <br />
+              <label for="name">Your Name:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-control"
+                required
               />
             </div>
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <!-- Replace 'mentor.name', 'mentor.education', 'mentor.currentCompany', etc. with actual mentor information -->
-              <h5 class="card-title"><%= mentorsData.name %></h5>
-              <p class="card-text">
-                <strong>Education:</strong> Mentor Education
-              </p>
-              <p class="card-text">
-                <strong>Current Company:</strong> Mentor Company
-              </p>
-              <a
-                class="btn btn-primary btn-block hire-button"
-                href="/bookSession/?mentorName=<%= mentorsData.name %>"
-              >
-                Book a session
-              </a>
-              <!-- Add other mentor information here -->
+            <div class="form-group">
+              <br />
+              <label for="email">Email:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-control"
+                required
+              />
             </div>
-          </div>
+            <div class="form-group">
+              <br />
+              <label for="date">Date:</label><br />
+
+              <input
+                type="date"
+                id="date"
+                name="date"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <br />
+              <label for="time">Time:</label>
+              <br />
+              <input
+                type="time"
+                id="time"
+                name="time"
+                class="form-control"
+                required
+              />
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary">Book Now</button>
+          </form>
         </div>
       </div>
     </div>
-
-    <!-- Add Bootstrap JS CDN link here (at the end of the body) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
-
-<script>
-  console.log("Client-side script is running");
-  // Rest of the client-side script
-</script>

@@ -6,10 +6,16 @@ const bodyParser = require("body-parser");
 
 const faqRouter = require("./routes/faq.route");
 const mentorsRouter = require("./routes/mentors.route");
+const hiredRouter = require("./routes/hired.route");
+
+// Middleware to parse JSON and URL-encoded form data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 app.use(faqRouter);
 app.use(mentorsRouter);
+app.use(hiredRouter);
 
 // Set the view engine to EJS
 app.set("view engine", "ejs");

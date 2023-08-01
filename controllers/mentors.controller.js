@@ -6,14 +6,21 @@ exports.mentors = (req, res) => {
 
 exports.mentorSelected = (req, res) => {
   console.log("Entered here");
-  const { name, email } = req.body;
+  const mentorsData = req.body;
 
-  console.log("Received mentor data:", { name, email });
+  console.log("Received mentor data:", mentorsData);
 
   res.render("mentorSelected", { mentorsData });
 };
 
 exports.bookSession = (req, res) => {
+  const mentorName = req.query.mentorName;
+  console.log("mentorNameeeeeeee", mentorName);
   console.log("Entered booked session");
-  res.send("SESSION BOOKED");
+  res.render("bookSession", { mentorName });
+};
+exports.bookSuccess = (req, res) => {
+  const booking = req.body;
+  console.log("Entered bookingdets", booking);
+  res.render("bookingSuccess", { booking });
 };
