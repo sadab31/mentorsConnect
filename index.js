@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const faqRouter = require("./routes/faq.route");
 const mentorsRouter = require("./routes/mentors.route");
 const hiredRouter = require("./routes/hired.route");
+const roadmapRouter = require("./routes/roadmap.route");
 
 // Middleware to parse JSON and URL-encoded form data
 app.use(express.json());
@@ -16,6 +17,7 @@ app.use(bodyParser.json());
 app.use(faqRouter);
 app.use(mentorsRouter);
 app.use(hiredRouter);
+app.use(roadmapRouter);
 
 // Set the view engine to EJS
 app.set("view engine", "ejs");
@@ -26,33 +28,12 @@ app.get("/", (req, res) => {
 
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/usersDB");
+    await mongoose.connect("mongodb://127.0.0.1:27017/jobPlatform");
     console.log("DB connected");
   } catch (error) {
     console.log("DB not connected");
   }
 };
-
-const productSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    reuired: true,
-  },
-  description: {
-    type: String,
-    reuired: true,
-  },
-  price: {
-    type: Number,
-    reuired: true,
-  },
-  date: {
-    type: Date,
-    default: Date.now,
-  },
-});
-
-const Product = mongoose.model("Products", productSchema);
 
 app.listen(PORT, async () => {
   console.log(`server is running http://localhost:${PORT}`);
