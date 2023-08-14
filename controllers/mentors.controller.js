@@ -1,8 +1,14 @@
 const path = require("path");
-const { mentorsData } = require("../model/mentors.model");
+const dummy = require("../DummyData/dummy");
 const Booking = require("../model/booking.model");
+const Mentor = require("../model/mentors.model");
+const mongoose = require("mongoose");
 
-exports.mentors = (req, res) => {
+exports.mentors = async (req, res) => {
+  console.log("Database connected:", mongoose.connection.readyState);
+  const mentorsData = await dummy.getmentorsfromdb();
+  console.log("Eimatro", mentorsData);
+
   res.render("mentors", { mentorsData });
 };
 
